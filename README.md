@@ -1,2 +1,1 @@
-# adminVue-xue
-静态站 用vue-element-admin框架搭建
+﻿管理页面vue   使用vue-elemnet-admin框架
