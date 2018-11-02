@@ -1,9 +1,9 @@
 import request from '@/utils/request'
-let base = 'http://localhost:8090'
+// let base = 'http://dev-mysite.com'
 
 export function getList() {
   return request({
-    url: `${base}/api/environment/list`,
+    url: `/api/environment/list`,
     method: 'get'
   })
 }

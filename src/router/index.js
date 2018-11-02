@@ -11,6 +11,7 @@ import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
+import environmentRouter from './modules/environment'
 
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -87,8 +88,8 @@ export const constantRouterMap = [
         meta: { title: 'documentation', icon: 'documentation', noCache: true }
       }
     ]
-  },
-  //{
+  }
+  // {
   //  path: '/guide',
   //  component: Layout,
   //  redirect: '/guide/index',
@@ -100,7 +101,7 @@ export const constantRouterMap = [
   //      meta: { title: 'guide', icon: 'guide', noCache: true }
   //    }
   //  ]
-  //}
+  // }
 ]
 
 export default new Router({
@@ -110,7 +111,7 @@ export default new Router({
 })
 
 export const asyncRouterMap = [
-  //{
+  // {
   //  path: '/permission',
   //  component: Layout,
   //  redirect: '/permission/index',
@@ -140,9 +141,9 @@ export const asyncRouterMap = [
   //      }
   //    }
   //  ]
-  //},
+  // },
   //
-  //{
+  // {
   //  path: '/icon',
   //  component: Layout,
   //  children: [
@@ -153,15 +154,15 @@ export const asyncRouterMap = [
   //      meta: { title: 'icons', icon: 'icon', noCache: true }
   //    }
   //  ]
-  //},
+  // },
   //
   /** When your routing table is too long, you can split it into small modules**/
-  //componentsRouter,
-  //chartsRouter,
-  //nestedRouter,
-  tableRouter,
+  componentsRouter,
+  chartsRouter,
+  nestedRouter,
+  tableRouter, environmentRouter,
 
-  //{
+  // {
   //  path: '/example',
   //  component: Layout,
   //  redirect: '/example/list',
@@ -191,9 +192,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'articleList', icon: 'list' }
   //    }
   //  ]
-  //},
+  // },
 
-  //{
+  // {
   //  path: '/tab',
   //  component: Layout,
   //  children: [
@@ -204,9 +205,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'tab', icon: 'tab' }
   //    }
   //  ]
-  //},
+  // },
 
-  //{
+  // {
   //  path: '/error',
   //  component: Layout,
   //  redirect: 'noredirect',
@@ -229,9 +230,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'page404', noCache: true }
   //    }
   //  ]
-  //},
+  // },
 
-  //{
+  // {
   //  path: '/error-log',
   //  component: Layout,
   //  redirect: 'noredirect',
@@ -243,9 +244,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'errorLog', icon: 'bug' }
   //    }
   //  ]
-  //},
+  // },
 
-  //{
+  // {
   //  path: '/excel',
   //  component: Layout,
   //  redirect: '/excel/export-excel',
@@ -274,9 +275,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'uploadExcel' }
   //    }
   //  ]
-  //},
+  // },
   //
-  //{
+  // {
   //  path: '/zip',
   //  component: Layout,
   //  redirect: '/zip/download',
@@ -290,9 +291,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'exportZip' }
   //    }
   //  ]
-  //},
+  // },
   //
-  //{
+  // {
   //  path: '/theme',
   //  component: Layout,
   //  redirect: 'noredirect',
@@ -304,9 +305,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'theme', icon: 'theme' }
   //    }
   //  ]
-  //},
+  // },
   //
-  //{
+  // {
   //  path: '/clipboard',
   //  component: Layout,
   //  redirect: 'noredirect',
@@ -318,9 +319,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'clipboardDemo', icon: 'clipboard' }
   //    }
   //  ]
-  //},
+  // },
   //
-  //{
+  // {
   //  path: '/i18n',
   //  component: Layout,
   //  children: [
@@ -331,9 +332,9 @@ export const asyncRouterMap = [
   //      meta: { title: 'i18n', icon: 'international' }
   //    }
   //  ]
-  //},
+  // },
   //
-  //{
+  // {
   //  path: 'external-link',
   //  component: Layout,
   //  children: [
@@ -342,7 +343,7 @@ export const asyncRouterMap = [
   //      meta: { title: 'externalLink', icon: 'link' }
   //    }
   //  ]
-  //},
+  // },
 
   { path: '*', redirect: '/404', hidden: true }
 ]
