@@ -7,11 +7,12 @@ Vue.use(Router)
 import Layout from '@/views/layout/Layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+// import componentsRouter from './modules/components'
+// import chartsRouter from './modules/charts'
+// import tableRouter from './modules/table'
+// import nestedRouter from './modules/nested'
 import environmentRouter from './modules/environment'
+import manageRouter from './modules/manage'
 
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -32,27 +33,27 @@ import environmentRouter from './modules/environment'
   }
 **/
 export const constantRouterMap = [
-  {
-    path: '/redirect',
-    component: Layout,
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
-  },
+  // {
+  //   path: '/redirect',
+  //   component: Layout,
+  //   hidden: true,
+  //   children: [
+  //     {
+  //       path: '/redirect/:path*',
+  //       component: () => import('@/views/redirect/index')
+  //     }
+  //   ]
+  // },
   {
     path: '/login',
     component: () => import('@/views/login/index'),
     hidden: true
   },
-  {
-    path: '/auth-redirect',
-    component: () => import('@/views/login/authredirect'),
-    hidden: true
-  },
+  // {
+  //   path: '/auth-redirect',
+  //   component: () => import('@/views/login/authredirect'),
+  //   hidden: true
+  // },
   {
     path: '/404',
     component: () => import('@/views/errorPage/404'),
@@ -75,33 +76,20 @@ export const constantRouterMap = [
         meta: { title: 'dashboard', icon: 'dashboard', noCache: true }
       }
     ]
-  },
-  {
-    path: '/documentation',
-    component: Layout,
-    redirect: '/documentation/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', noCache: true }
-      }
-    ]
   }
   // {
-  //  path: '/guide',
-  //  component: Layout,
-  //  redirect: '/guide/index',
-  //  children: [
-  //    {
-  //      path: 'index',
-  //      component: () => import('@/views/guide/index'),
-  //      name: 'Guide',
-  //      meta: { title: 'guide', icon: 'guide', noCache: true }
-  //    }
-  //  ]
-  // }
+  //   path: '/documentation',
+  //   component: Layout,
+  //   redirect: '/documentation/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/documentation/index'),
+  //       name: 'Documentation',
+  //       meta: { title: 'documentation', icon: 'documentation', noCache: true }
+  //     }
+  //   ]
+  // },
 ]
 
 export default new Router({
@@ -157,10 +145,12 @@ export const asyncRouterMap = [
   // },
   //
   /** When your routing table is too long, you can split it into small modules**/
-  componentsRouter,
-  chartsRouter,
-  nestedRouter,
-  tableRouter, environmentRouter,
+  // componentsRouter,
+  // chartsRouter,
+  // nestedRouter,
+  // tableRouter,
+  environmentRouter,
+  manageRouter,
 
   // {
   //  path: '/example',

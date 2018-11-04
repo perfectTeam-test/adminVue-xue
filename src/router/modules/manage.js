@@ -2,28 +2,28 @@
 
 import Layout from '@/views/layout/Layout'
 
-const environmentRouter = {
-  path: '/environment',
+const manageRouter = {
+  path: '/manage',
   component: Layout,
-  redirect: '/environment/list',
-  name: 'environment',
+  redirect: '/manage/list',
+  name: 'manage',
   meta: {
-    title: '环境管理',
+    title: '查询管理',
     icon: 'table'
   },
   children: [
     {
       path: 'list',
-      component: () => import('@/views/admin/environment/index'),
-      name: '环境',
-      meta: { title: '环境列表' }
-    },
-    {
-      path: 'add',
-      component: () => import('@/views/admin/environment/index'),
-      name: '环境添加',
-      meta: { title: '环境添加' }
+      component: () => import('@/views/admin/manage/index'),
+      name: '查询管理',
+      meta: { title: '查询管理' }
     }
+    // {
+    //   path: 'add',
+    //   component: () => import('@/views/environment/index'),
+    //   name: '环境添加',
+    //   meta: { title: '环境添加' }
+    // }
     // {
     //   path: 'inline-edit-table',
     //   component: () => import('@/views/table/inlineEditTable'),
@@ -50,4 +50,4 @@ const environmentRouter = {
     // }
   ]
 }
-export default environmentRouter
+export default manageRouter
