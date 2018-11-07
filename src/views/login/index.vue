@@ -1,6 +1,5 @@
 <template>
   <div class="login-container">
-
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
@@ -67,8 +66,8 @@ import { isvalidUsername } from '@/utils/validate'
 import LangSelect from '@/components/LangSelect'
 import SocialSign from './socialsignin'
 
-import  { fetchList }  from '../../api/article'
-import  { loginByUsername,postLogin }  from '../../api/login'
+// import { fetchList } from '../../api/article'
+import { loginByUsername } from '../../api/login'
 
 export default {
   list: null,
@@ -128,13 +127,12 @@ export default {
         this.passwordType = 'password'
       }
     },
-    //获取品牌列表
+    // 获取品牌列表
     handleLogin1() {
-
-      console.log(111);
+      console.log(111)
       loginByUsername().then((res) => {
-        console.log(res);
-    });
+        console.log(res)
+      })
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {

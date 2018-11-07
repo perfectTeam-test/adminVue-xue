@@ -1,52 +1,62 @@
 <template>
-  <div class="app-container">
+  <div class="app-container" >
     <el-form :inline="true" class="demo-form-inline">
 
       <el-form-item label="切换环境">
-        <el-select v-loading="listLoading" v-model="envName" placeholder="请选择" @change="selectEnvChange">
-          <el-option key="local" label="local" value="local"/>
-          <el-option key="ult" label="ult" value="ult"/>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="操作库 ">
-        <el-select v-loading="listLoading" v-model="dbName" placeholder="请选择" @change="selectEnvChange">
+        <el-select v-model="envName" placeholder="请选择1" @change="selectEnvChange">
           <el-option
             v-for="item in envList"
-            :key="item.dbName"
+            :key="item.id"
             :label="item.name"
             :value="item.name"/>
         </el-select>
       </el-form-item>
 
-      <el-form-item label="选择查询">
-        <el-select v-loading="listLoading" v-model="manageSql" placeholder="请选择" @change="selectManageChange">
+      <el-form-item label="操作库 ">
+        <el-select v-model="manageDbId" placeholder="请选择" @change="selectDbChange">
           <el-option
-            v-for="item in manageSqllist"
+            v-for="item in manageDbList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"/>
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="选择查询">
+        <el-select v-model="manageSql" placeholder="请选择" @change="selectSqlChange">
+          <el-option
+            v-for="item in manageSqlList"
             :key="item.id"
             :label="item.name"
             :value="item.sql"/>
         </el-select>
+
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">查询</el-button>
+          <el-button v-loading="listLoading" type="primary" @click="onSubmit" >查询</el-button>
         </el-form-item>
+
       </el-form-item>
     </el-form>
 
     <el-input
       :rows="2"
       v-model="postManageSql"
+      :autosize="{ minRows: 3, maxRows: 6}"
       type="textarea"
       placeholder="请输入内容"/>
 
+    <div style="height: 20px"/>
     <el-table
+      v-loading="listLoading"
       :data="tableData"
+      max-height="600"
       border
       style="width: 100%">
       <el-table-column
         v-for="(item ,key) in tableField"
+        :prop="item"
         :label="item"
-        :prop="key"
-        :key="item"
+        :key="key"
         fixed/>
     </el-table>
   </div>
@@ -55,32 +65,22 @@
 <script>
 
 import { getList } from '@/api/admin/environment/environment'
-import { getManageSqlList } from '@/api/admin/manageSql/manageSql'
-import { getDataBySql } from '@/api/admin/manageSql/manageSql'
+import { getManageDbList, getManageSqlList, getDataBySql } from '@/api/admin/manage/manage'
 
 export default {
-  filters: {
-    statusFilter(status) {
-      const statusMap = {
-        success: 'success',
-        draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status === 0 ? 'success' : 'deleted']
-    }
-  },
   data() {
     return {
-      dbName: '',
       listLoading: false,
       envList: [],
       environmentId: '',
-      manageSqllist: [],
+      manageSqlList: [],
       manageSql: '',
       tableData: [],
       tableField: [],
       envName: '',
-      postManageSql: ''
+      postManageSql: '',
+      manageDbList: [],
+      manageDbId: ''
     }
   },
   mounted() {
@@ -90,56 +90,49 @@ export default {
     fetchData() {
       this.listLoading = true
       getList().then(response => {
+        console.log(this.envList)
         this.envList = response.data.data
         this.listLoading = false
       })
-      getManageSqlList().then(response => {
-        this.manageSqllist = response.data.data
+      getManageDbList().then(response => {
+        this.manageDbList = response.data.data
         this.listLoading = false
       })
     },
-    cancelEdit(row) {
-      this.$message({
-        message: '您已取消修改',
-        type: 'warning'
-      })
-      this.fetchData()
-    },
-    // confirmEdit(row) {
-    //   row.edit = false
-    //   row.columns = JSON.parse(row.columns)
-    //   update(row).then(response => {
-    //     this.$message({
-    //       message: '更新成功',
-    //       type: 'success'
-    //     })
-    //     this.fetchData()
-    //   })
-    // },
-    // addPage() {
-    //   this.$router.push('/cms/block/store')
-    // },
-    //
-    // selDelete(row) {
-    //   row.deleted = parseInt(this.isDeleted)
-    // },
-    // // 编辑
-    // edit(row) {
-    //   this.$router.push('/cms/block/' + row.id + '/edit')
-    // },
     selectEnvChange(row) {
       console.log(this.environmentId)
     },
-    selectManageChange(row) {
+    // 操作库下拉
+    selectDbChange(manageDbId) {
+      getManageSqlList({ 'manageDbId': manageDbId }).then(response => {
+        this.manageSqlList = response.data.data
+        this.listLoading = false
+      })
+    },
+    selectSqlChange(row) {
       this.postManageSql = this.manageSql
-      console.log(this.environmentId)
     },
     onSubmit() {
+      let connName = ''
+      const _this = this
+      this.manageDbList.forEach(function(item) {
+        if (item.id === _this.manageDbId) {
+          connName = item.connName
+        }
+      })
+      if (!connName || !this.postManageSql || !this.envName) {
+        this.$message({
+          type: 'error',
+          message: '请先选择'
+        })
+        return false
+      }
       const param = {
-        'connName': this.dbName,
+        'connName': connName,
         'sql': this.postManageSql,
         'envName': this.envName
       }
+      this.listLoading = true
       getDataBySql(param).then(res => {
         this.tableData = res.data.data
         if (this.tableData.length > 0) {
@@ -150,10 +143,6 @@ export default {
         }
         this.listLoading = false
       })
-    },
-    fastEdit(row) {
-      row.edit = !row.edit
-      this.isDeleted = row.deleted.toString()
     }
   }
 }
@@ -168,5 +157,32 @@ export default {
         position: absolute;
         right: 15px;
         top: 10px;
+    }
+
+    .el-row {
+        margin-bottom: 20px;
+    &:last-child {
+         margin-bottom: 0;
+     }
+    }
+    .el-col {
+        border-radius: 4px;
+    }
+    .bg-purple-dark {
+        background: #99a9bf;
+    }
+    .bg-purple {
+        background: #d3dce6;
+    }
+    .bg-purple-light {
+        background: #e5e9f2;
+    }
+    .grid-content {
+        border-radius: 4px;
+        min-height: 36px;
+    }
+    .row-bg {
+        padding: 10px 0;
+        background-color: #f9fafc;
     }
 </style>

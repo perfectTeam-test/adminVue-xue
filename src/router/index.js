@@ -13,6 +13,7 @@ import Layout from '@/views/layout/Layout'
 // import nestedRouter from './modules/nested'
 import environmentRouter from './modules/environment'
 import manageRouter from './modules/manage'
+import balanceRouter from './modules/balance'
 
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -33,17 +34,17 @@ import manageRouter from './modules/manage'
   }
 **/
 export const constantRouterMap = [
-  // {
-  //   path: '/redirect',
-  //   component: Layout,
-  //   hidden: true,
-  //   children: [
-  //     {
-  //       path: '/redirect/:path*',
-  //       component: () => import('@/views/redirect/index')
-  //     }
-  //   ]
-  // },
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
   {
     path: '/login',
     component: () => import('@/views/login/index'),
@@ -151,6 +152,7 @@ export const asyncRouterMap = [
   // tableRouter,
   environmentRouter,
   manageRouter,
+  balanceRouter,
 
   // {
   //  path: '/example',

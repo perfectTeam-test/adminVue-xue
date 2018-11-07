@@ -3,6 +3,26 @@
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
 
     <breadcrumb class="breadcrumb-container"/>
+    <!--<el-select v-model="value" placeholder="请选择" style="float: right;">-->
+    <!--<el-option-->
+
+    <!--key="item.value"-->
+    <!--label="item.label"-->
+    <!--value="item.value">-->
+    <!--</el-option>-->
+    <!--<el-option-->
+
+    <!--key="item.value"-->
+    <!--label="item.label"-->
+    <!--value="item.value">-->
+    <!--</el-option>-->
+    <!--<el-option-->
+
+    <!--key="item.value"-->
+    <!--label="item.label"-->
+    <!--value="item.value">-->
+    <!--</el-option>-->
+    <!--</el-select>-->
 
     <div class="right-menu">
       <template v-if="device!=='mobile'">
