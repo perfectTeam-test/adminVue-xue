@@ -14,6 +14,7 @@ import Layout from '@/views/layout/Layout'
 import environmentRouter from './modules/environment'
 import manageRouter from './modules/manage'
 import balanceRouter from './modules/balance'
+import memberRouter from './modules/member'
 
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -153,6 +154,7 @@ export const asyncRouterMap = [
   environmentRouter,
   manageRouter,
   balanceRouter,
+  memberRouter,
 
   // {
   //  path: '/example',

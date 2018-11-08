@@ -20,10 +20,10 @@ const balanceRouter = {
     },
 
     {
-      path: 'list',
-      component: () => import('@/views/admin/environment/index'),
-      name: '环境',
-      meta: { title: '环境列表' }
+      path: 'recharge1',
+      component: () => import('@/views/admin/balance/index'),
+      name: 'recharge1',
+      meta: { title: '会员充值' }
     }
 
   ]
