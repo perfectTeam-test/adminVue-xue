@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-
     <el-form>
       <el-form-item label="切换环境" label-width="80px">
         <el-select v-model="envName" placeholder="请选择" @change="selectEnvChange">
