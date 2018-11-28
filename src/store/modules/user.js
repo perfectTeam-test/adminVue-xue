@@ -1,4 +1,4 @@
-import { logout, getUserInfo, login, getOneUserInfo } from '@/api/login'
+import { logout, login, getOneUserInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const user = {
@@ -126,7 +126,7 @@ const user = {
       return new Promise(resolve => {
         commit('SET_TOKEN', role)
         setToken(role)
-        getUserInfo(role).then(response => {
+        getOneUserInfo(role).then(response => {
           const data = response.data
           commit('SET_ROLES', data.roles)
           commit('SET_NAME', data.name)

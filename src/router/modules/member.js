@@ -7,6 +7,7 @@ const memberRouter = {
   component: Layout,
   redirect: 'member',
   name: 'member',
+  alwaysShow: true,
   meta: {
     title: '会员管理',
     icon: 'component'
@@ -17,15 +18,7 @@ const memberRouter = {
       component: () => import('@/views/admin/member/index'),
       name: 'member',
       meta: { title: '查询会员' }
-    },
-
-    {
-      path: 'member1',
-      component: () => import('@/views/admin/member/index'),
-      name: 'member1',
-      meta: { title: '查询会员1' }
     }
-
   ]
 }
 

@@ -7,6 +7,7 @@ const balanceRouter = {
   component: Layout,
   redirect: 'balance',
   name: 'balance',
+  alwaysShow: true,
   meta: {
     title: '余额管理',
     icon: 'component'
@@ -17,15 +18,7 @@ const balanceRouter = {
       component: () => import('@/views/admin/balance/index'),
       name: 'recharge',
       meta: { title: '会员充值' }
-    },
-
-    {
-      path: 'recharge1',
-      component: () => import('@/views/admin/balance/index'),
-      name: 'recharge1',
-      meta: { title: '会员充值' }
     }
-
   ]
 }
 
