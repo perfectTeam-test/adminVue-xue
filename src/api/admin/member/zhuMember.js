@@ -3,7 +3,7 @@ import request from '@/utils/request'
 
 export function getUserInfoById(data) {
   return request({
-    url: `/api/member/info?mobile=` + data.mobile + '&envName=' + data.envName,
+    url: `/api/zhuMember/info?phone_number=` + data.phone_number + '&envName=' + data.envName,
     method: 'get'
   })
 }

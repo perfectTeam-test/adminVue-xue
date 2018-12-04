@@ -17,7 +17,13 @@ const memberRouter = {
       path: 'member',
       component: () => import('@/views/admin/member/index'),
       name: 'member',
-      meta: { title: '查询会员' }
+      meta: { title: '便利购查询会员' }
+    },
+    {
+      path: 'zhuMember',
+      component: () => import('@/views/admin/member/zhuMember'),
+      name: '主商城会员',
+      meta: { title: '主商城查询会员' }
     }
   ]
 }

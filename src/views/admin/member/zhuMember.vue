@@ -15,7 +15,7 @@
 
     <el-form :inline="true" label-width="80px" class="demo-form-inline">
       <el-form-item label="手机号">
-        <el-input v-model="mobile"/>
+        <el-input v-model="phone_number"/>
       </el-form-item>
       <el-form-item>
         <el-button v-loading="listLoading" type="primary" @click="onSubmit">查询</el-button>
@@ -45,7 +45,7 @@
 <script>
 
 import { getList } from '@/api/admin/environment/environment'
-import { getUserInfoById } from '@/api/admin/member/member'
+import { getUserInfoById } from '@/api/admin/member/zhuMember'
 
 export default {
   data() {
@@ -53,7 +53,7 @@ export default {
       listLoading: false,
       envList: [],
       envName: '',
-      mobile: '',
+      phone_number: '',
       tableData: [],
       tableField: []
     }
@@ -73,7 +73,7 @@ export default {
       console.log(this.environmentId)
     },
     onSubmit() {
-      if (this.mobile === '' || this.envName === '') {
+      if (this.phone_number === '' || this.envName === '') {
         this.$message({
           type: 'error',
           message: '请填写查找内容'
@@ -82,7 +82,7 @@ export default {
       }
 
       const para = {
-        'mobile': this.mobile,
+        'phone_number': this.phone_number,
         'envName': this.envName
       }
 

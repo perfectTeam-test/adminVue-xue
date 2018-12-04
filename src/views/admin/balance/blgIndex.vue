@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-form>
       <el-form-item label="切换环境" label-width="80px">
-        <el-select v-model="envName" placeholder="请选择" @change="selectEnvChange">
+        <el-select v-model="envName" placeholder="只有dev16充值生效" @change="selectEnvChange">
           <el-option
             v-for="item in envList"
             :key="item.id"
@@ -60,7 +60,7 @@ export default {
     },
     onSubmit() {
       const para = {
-        'userNumber': 'as' + this.formRecharge.userNumber,
+        'userNumber': 'blg' + this.formRecharge.userNumber,
         'balance': this.formRecharge.balance + '00',
         'envName': this.envName
       }
@@ -106,7 +106,6 @@ export default {
 
     .el-row {
       margin-bottom: 20px;
-
     }
     .last-child {
         margin-bottom: 0;

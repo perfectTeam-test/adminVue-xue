@@ -14,10 +14,16 @@ const balanceRouter = {
   },
   children: [
     {
+      path: 'blgRecharge',
+      component: () => import('@/views/admin/balance/blgIndex'),
+      name: 'blgRecharge',
+      meta: { title: '便利购余额充值' }
+    },
+    {
       path: 'recharge',
       component: () => import('@/views/admin/balance/index'),
       name: 'recharge',
-      meta: { title: '会员充值' }
+      meta: { title: '主商城余额充值' }
     }
   ]
 }
